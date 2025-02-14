@@ -71,6 +71,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "house_price_app.wsgi.application"
 
+CSRF_COOKIE_SECURE = True  # Ensure this is set to True in production (only if you're using HTTPS)
+CSRF_TRUSTED_ORIGINS = [
+    'https://django-house-price-production.uprailway.app',
+    # Add any other trusted origins here
+]
+
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
