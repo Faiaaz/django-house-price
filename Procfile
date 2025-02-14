@@ -1,1 +1,1 @@
-web: gunicorn django-house-price.wsgi
+web: gunicorn house_price_app.wsgi
