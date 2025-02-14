@@ -2,6 +2,7 @@ import pickle
 from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework.decorators import api_view
+from django.views.decorators.csrf import csrf_exempt
 
 # Load the trained model
 with open("house_price_model.pkl", "rb") as file:
@@ -14,6 +15,8 @@ def index(request):
 
 
 # Handle form submission and predict the price
+@csrf_exempt
+@api_view(["POST"])
 def predict_price(request):
     if request.method == "POST":
         # Get input values from the form
