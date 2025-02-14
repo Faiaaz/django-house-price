@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Prediction</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }
+        .form-container { width: 300px; margin: 0 auto; text-align: left; }
+        .form-container input, .form-container button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box; /* Ensures padding doesn’t affect width */
+        }
+        .form-container button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .form-container button:hover { background-color: #45a049; }
+        .result { font-size: 18px; margin-top: 20px; }
+        h2 { text-align: center; } /* Centering the heading */
+    </style>
+</head>
+<body>
+    <h2>House Price Prediction</h2>
+    <div class="form-container">
+        <form method="POST" action="{% url 'predict_price' %}">
+            {% csrf_token %}
+            <label for="area">Area (sqft):</label>
+            <input type="text" id="area" name="area" value="{{ area }}" required>
+
+            <label for="bedrooms">Number of Bedrooms:</label>
+            <input type="text" id="bedrooms" name="bedrooms" value="{{ bedrooms }}" required>
+
+            <button type="submit">Predict Price</button>
+        </form>
+        {% if predicted_price %}
+        <div class="result">
+            <h3>Predicted Price: ${{ predicted_price|floatformat:2 }}</h3>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
