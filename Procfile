@@ -1,1 +1,1 @@
-web: gunicorn myproject.wsgi
+web: gunicorn house_price_app.wsgi
